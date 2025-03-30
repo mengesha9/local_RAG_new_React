@@ -13,7 +13,7 @@ backend_new/chroma_db/chroma.sqlite3
 
 # Ignore log files
 backend_new/logs/*.log
-
+.DS_Store
 
 # web
 web/node_modules/
