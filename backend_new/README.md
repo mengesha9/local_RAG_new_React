@@ -1,4 +1,5 @@
-# local_RAG_new_FE
+### ProcessCopilot
+
 ### install ollama and LLM models 
    install llama3.1 7B
   ```
@@ -59,6 +60,8 @@ pip install -r requirements.txt
 
 ### Daynmic prompt 
   you can add or copy past a prompt in the prompt.txt file 
+
+
 
 
 
