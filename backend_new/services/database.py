@@ -17,6 +17,20 @@ def get_db_connection():
 
 def create_application_logs():
     conn = get_db_connection()
+    
+    # Create missing application_logs table
+    conn.execute('''CREATE TABLE IF NOT EXISTS application_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        session_id TEXT NOT NULL,
+        user_id INTEGER NOT NULL,
+        user_query TEXT,
+        gpt_response TEXT,
+        model TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (session_id) REFERENCES chats (session_id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    )''')
+    
     conn.execute('''CREATE TABLE IF NOT EXISTS chats
                     (session_id TEXT PRIMARY KEY,
                      name TEXT,

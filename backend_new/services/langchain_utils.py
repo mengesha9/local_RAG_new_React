@@ -5,7 +5,7 @@ from langchain.chains import create_history_aware_retriever, create_retrieval_ch
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from typing import List, Dict
 from langchain_core.documents import Document
-# from langchain_ollama import OllamaEmbeddings,ChatOllama
+from langchain_ollama import OllamaEmbeddings,ChatOllama
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from uuid import uuid4
 
@@ -121,10 +121,18 @@ def get_rag_chain(model_name: str = "gpt-4"):
             search_kwargs={"k": 4}
         )
         
+        llm_instance = ChatOpenAI(model_name=model_name)
+        
+        if model_name == ("llama3.1"):
+            llm_instance = ChatOllama(model="llama3.1:latest")
+        elif model_name == ("llama3.2"):
+            llm_instance = ChatOllama(model="llama3.2:3b")
+        # If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
         # Create prompt template
         prompt = PromptTemplate(
             template="""Use the following pieces of context to answer the question at the end. 
-            If you don't know the answer, just say that you don't know, don't try to make up an answer.
+            
             
             Context: {context}
             
@@ -146,7 +154,7 @@ def get_rag_chain(model_name: str = "gpt-4"):
         
         # Create chain
         chain = ConversationalRetrievalChain.from_llm(
-            llm=ChatOpenAI(model_name=model_name, temperature=0),
+            llm=llm_instance,
             retriever=retriever,
             memory=memory,
             combine_docs_chain_kwargs={"prompt": prompt},

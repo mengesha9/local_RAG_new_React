@@ -10,6 +10,9 @@ export default function ModelSelector({ sessionId }) {
     { id: 'gpt-3.5-turbo', name: 'GPT-3.5 Turbo', description: 'Fast and efficient for most tasks' },
     { id: 'gpt-4o', name: 'GPT-4o Turbo', description: 'Latest GPT-4o model with enhanced capabilities' },
     { id: 'gpt-4o-mini', name: 'GPT-4o Mini', description: 'Latest GPT-4o Mini model with enhanced capabilities' },
+    {id:"llama3.1",name:"llama3.1",description:"Llama 3.1 model with enhanced capabilities"},
+    {id:"llama3.2",name:"llama3.2",description:"Llama 3.2 model with enhanced capabilities"},
+
   ];
   
 

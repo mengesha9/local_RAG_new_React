@@ -18,11 +18,21 @@ pytesseract==0.3.8
 setuptools>=65.5.1
 streamlit
 python-dotenv
-# ollama
+ollama
 chromadb
 pdfplumber 
 langchain
-# langchain-ollama
+langchain-ollama
 unstructured
 unstructured[all-docs]
+
+
+docling 
+PyPDF2 
+openai 
+langchain 
+faiss-cpu 
+tiktoken 
+langchain-community 
+langchain-openai
 

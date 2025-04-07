@@ -51,6 +51,8 @@ from datetime import datetime
 import openai
 from pydantic import BaseModel
 
+import json
+
 # Create logs directory if it doesn't exist
 if not os.path.exists('logs'):
     os.makedirs('logs')
@@ -320,14 +322,19 @@ async def upload_document(
                 pdf_id = store_pdf(file.filename, user_id, file_content)
                 logging.info(f"PDF stored successfully with ID: {pdf_id}")
 
+                
                 # Process the PDF and get chunks
                 chunks = process_pdf(temp_file_path)
+                with open("chunks.json", "w", encoding="utf-8") as f:
+                    json.dump(chunks, f, ensure_ascii=False, indent=2)
 
                 # Index in vector database
                 logging.info("Indexing PDF in vector database...")
+                file_path = "temp_final_summary.txt"
                 indexing_success = index_document_to_chroma(
                     file_id=pdf_id,
-                    chunks=chunks
+                    file_path=file_path,
+                    user_id=user_id
                 )
 
                 if not indexing_success:

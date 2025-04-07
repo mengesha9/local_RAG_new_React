@@ -72,7 +72,9 @@ backend_new/app.log
 backend_new/rag_app.db
 backend_new/chroma_db/
 backend_new/logs/
-
+backend_new/chunks.json
+backend_new/chunks/
+backend_new/temp_final_summary.txt
 backend/.env
 
 

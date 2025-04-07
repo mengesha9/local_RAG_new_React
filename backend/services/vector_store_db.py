@@ -69,6 +69,7 @@ def load_and_split_document(file_path: str) -> List[Document]:
 def index_document_to_chroma(file_path: str, file_id: int,user_id:int) -> bool:
     try:
         # ollama.pull(EMBEDDING_MODEL)
+        file_path = "temp_final_summary.txt"
         splits = load_and_split_document(file_path)
 
         # Add metadata to each split
